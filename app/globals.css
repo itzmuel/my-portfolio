@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #06111f;
+  --foreground: #eef2ff;
+  --surface: rgba(9, 18, 35, 0.78);
+  --surface-strong: #0e1a31;
+  --muted: #8ea0c4;
+  --border: rgba(180, 198, 255, 0.16);
+  --developer: #5eead4;
+  --marketing: #f59e0b;
+  --accent: #7c3aed;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-developer: var(--developer);
+  --color-marketing: var(--marketing);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-display);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono-brand);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #06111f;
+    --foreground: #eef2ff;
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display), sans-serif;
+  background-image:
+    radial-gradient(circle at top left, rgba(94, 234, 212, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.16), transparent 24%),
+    radial-gradient(circle at bottom center, rgba(124, 58, 237, 0.14), transparent 30%),
+    linear-gradient(180deg, #091222 0%, #050a14 100%);
+}
+
+body::selection {
+  background: rgba(94, 234, 212, 0.26);
+  color: var(--foreground);
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+.mesh-panel {
+  position: relative;
+  isolation: isolate;
+}
+
+.mesh-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.85), transparent 92%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glass-card {
+  background: rgba(10, 19, 37, 0.76);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(180, 198, 255, 0.14);
 }
